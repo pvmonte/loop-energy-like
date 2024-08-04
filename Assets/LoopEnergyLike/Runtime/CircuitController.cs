@@ -12,6 +12,7 @@ public class CircuitController : MonoBehaviour
     [SerializeField] private SquareNode[] nodes;
 
     [SerializeField] private CircuitNodeData[] nodeDatas;
+    private bool isClosed;
 
     public event Action<CircuitController> OnClose; 
     public event Action<CircuitController> OnOpen; 
@@ -39,12 +40,18 @@ public class CircuitController : MonoBehaviour
             CheckNode(nodes[i], i);
         }
 
-        if (nodeDatas.All(data => data.match))
+        bool circuitClosedCheck = nodeDatas.All(data => data.match);
+
+        if (circuitClosedCheck && !isClosed)
         {
+            isClosed = true;
+            print("Circuit closed");
             OnClose?.Invoke(this);
         }
-        else
+        else if(!circuitClosedCheck && isClosed)
         {
+            isClosed = false;
+            print("Circuit opened");
             OnOpen?.Invoke(this);
         }
     }
