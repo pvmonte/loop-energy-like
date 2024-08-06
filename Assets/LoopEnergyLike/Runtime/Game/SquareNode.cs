@@ -28,6 +28,7 @@ public class SquareNode : MonoBehaviour
     public List<SquareNode> ConnectedNodes { get; private set; } = new List<SquareNode>();
 
     public event Action OnSpin;
+    public event Action<bool> OnChangeCharge; 
 
 #if UNITY_EDITOR
     [SerializeField] private SquareNodeDirections lastUpSaved;
@@ -61,12 +62,28 @@ public class SquareNode : MonoBehaviour
 
     public void Spin(GridSlot gridSlot)
     {
+        if (isRoot) return;
+
         ConnectedNodes.Clear();
         currentUp = currentUp.GetNext();
         transform.rotation = Quaternion.Euler(0, 0, (int)currentUp);
 
         SpinConnections();
+        CheckAllConnections(gridSlot);
+        CheckCharge();
+        
+        OnSpin?.Invoke();
+    }
 
+    public void CheckAllConnections()
+    {
+        var slot = GetComponentInParent<GridSlot>();
+        
+        CheckAllConnections(slot);
+    }
+
+    public void CheckAllConnections(GridSlot gridSlot)
+    {
         for (int i = 0; i < connections.Length; i++)
         {
             try
@@ -94,16 +111,20 @@ public class SquareNode : MonoBehaviour
                 Console.WriteLine(e);
             }
         }
-
-        if (isRoot) return;
-        CheckCharge();
-        
-        OnSpin?.Invoke();
     }
 
     public void CheckCharge()
     {
+        if (isRoot) return;
+        
+        bool previousValue = IsCharged;
         IsCharged = ConnectedNodes.Count > 0 && ConnectedNodes.Any(x => x.IsCharged);
+
+        if (previousValue != IsCharged)
+        {
+            print("Charge changed");
+            OnChangeCharge?.Invoke(IsCharged);
+        }
     }
 
     private void SpinConnections()

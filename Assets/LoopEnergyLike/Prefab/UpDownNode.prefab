@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 456290930497048448}
   - component: {fileID: 4260516543986764253}
+  - component: {fileID: -2745689632199901302}
   m_Layer: 0
   m_Name: UpDownNode
   m_TagString: Untagged
@@ -132,9 +133,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRoot: 0
   currentUp: 0
-  connections: 00000000a6ffffff
+  connections: 000000004cffffff
   <IsCharged>k__BackingField: 0
   lastUpSaved: 0
+--- !u!114 &-2745689632199901302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059746819541874141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9e2d23c0a9dfb48becfded57d57dc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  node: {fileID: 0}
+  sprites: []
 --- !u!1 &8991730787860978817
 GameObject:
   m_ObjectHideFlags: 0

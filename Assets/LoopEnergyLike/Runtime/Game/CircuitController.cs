@@ -30,6 +30,11 @@ public class CircuitController : MonoBehaviour
             
             nodes[i].OnSpin += Node_OnSpin;
         }
+        
+        for (int i = 0; i < nodes.Length; i++)
+        {
+            nodes[i].CheckAllConnections();
+        }
     }
 
     private void Node_OnSpin()
@@ -62,23 +67,7 @@ public class CircuitController : MonoBehaviour
 
     private void CheckNode(SquareNode node, int index)
     {
+        node.CheckCharge();
         circuitData.NodesData[index].match = node.CurrentUp == circuitData.NodesData[index].expectedDirections;
     }
-}
-
-[System.Serializable]
-public class CircuitData
-{
-    [field: SerializeField] public CircuitNodeData[] NodesData { get; private set; }
-    public bool isClosed;
-}
-
-[System.Serializable]
-public struct CircuitNodeData
-{
-    [Tooltip("x is the row and y is the column")]
-    [SerializeField] public Vector2Int rowAndColumn;
-    [SerializeField] public SquareNode node;
-    [SerializeField] public SquareNodeDirections expectedDirections;
-    [SerializeField] public bool match;
 }
