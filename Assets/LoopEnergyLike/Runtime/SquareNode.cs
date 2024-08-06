@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class SquareNode : MonoBehaviour
 {
+    private GridSlot slot;
     [SerializeField] private bool isRoot;
     [SerializeField] private SquareNodeDirections currentUp;
     public SquareNodeDirections CurrentUp => currentUp;
@@ -68,26 +69,29 @@ public class SquareNode : MonoBehaviour
 
         for (int i = 0; i < connections.Length; i++)
         {
-            switch (connections[i])
+            try
             {
-                case SquareNodeDirections.Up:
-                    if (!gridSlot.upNeighbor) break;
-                    CheckConnection(connections[i], gridSlot.upNeighbor.node);
-                    break;
-                case SquareNodeDirections.Right:
-                    if (!gridSlot.rightNeighbor) break;
-                    CheckConnection(connections[i], gridSlot.rightNeighbor.node);
-                    break;
-                case SquareNodeDirections.Down:
-                    if (!gridSlot.downNeighbor) break;
-                    CheckConnection(connections[i], gridSlot.downNeighbor.node);
-                    break;
-                case SquareNodeDirections.Left:
-                    if (!gridSlot.leftNeighbor) break;
-                    CheckConnection(connections[i], gridSlot.leftNeighbor.node);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                switch (connections[i])
+                {
+                    case SquareNodeDirections.Up:
+                        CheckConnection(connections[i], gridSlot.upNeighbor.node);
+                        break;
+                    case SquareNodeDirections.Right:
+                        CheckConnection(connections[i], gridSlot.rightNeighbor.node);
+                        break;
+                    case SquareNodeDirections.Down:
+                        CheckConnection(connections[i], gridSlot.downNeighbor.node);
+                        break;
+                    case SquareNodeDirections.Left:
+                        CheckConnection(connections[i], gridSlot.leftNeighbor.node);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
             }
         }
 

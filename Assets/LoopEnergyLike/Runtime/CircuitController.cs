@@ -8,22 +8,26 @@ using UnityEngine.Serialization;
 
 public class CircuitController : MonoBehaviour
 {
-    [SerializeField] private GridSlot[] slots;
     [SerializeField] private SquareNode[] nodes;
 
-    [SerializeField] private CircuitNodeData[] nodeDatas;
-    private bool isClosed;
+    [SerializeField] private CircuitData circuitData;
+    
 
     public event Action<CircuitController> OnClose; 
     public event Action<CircuitController> OnOpen; 
     
-    void Start()
+    public void Initialize(GridSlot[,] slots)
     {
-        nodes = new SquareNode[slots.Length];
+        nodes = new SquareNode[circuitData.NodesData.Length];
         
-        for (int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < nodes.Length; i++)
         {
-            nodes[i] = slots[i].node;
+            var data = circuitData.NodesData[i];
+            var rowAndColumn = data.rowAndColumn;
+            var slot = slots[rowAndColumn.x, rowAndColumn.y];
+            nodes[i] = Instantiate(data.node, slot.transform);
+            slot.node = nodes[i];
+            
             nodes[i].OnSpin += Node_OnSpin;
         }
     }
@@ -40,17 +44,17 @@ public class CircuitController : MonoBehaviour
             CheckNode(nodes[i], i);
         }
 
-        bool circuitClosedCheck = nodeDatas.All(data => data.match);
+        bool circuitClosedCheck = circuitData.NodesData.All(data => data.match);
 
-        if (circuitClosedCheck && !isClosed)
+        if (circuitClosedCheck && !circuitData.isClosed)
         {
-            isClosed = true;
+            circuitData.isClosed = true;
             print("Circuit closed");
             OnClose?.Invoke(this);
         }
-        else if(!circuitClosedCheck && isClosed)
+        else if(!circuitClosedCheck && circuitData.isClosed)
         {
-            isClosed = false;
+            circuitData.isClosed = false;
             print("Circuit opened");
             OnOpen?.Invoke(this);
         }
@@ -58,13 +62,23 @@ public class CircuitController : MonoBehaviour
 
     private void CheckNode(SquareNode node, int index)
     {
-        nodeDatas[index].match = node.CurrentUp == nodeDatas[index].expectedDirections;
+        circuitData.NodesData[index].match = node.CurrentUp == circuitData.NodesData[index].expectedDirections;
     }
+}
+
+[System.Serializable]
+public class CircuitData
+{
+    [field: SerializeField] public CircuitNodeData[] NodesData { get; private set; }
+    public bool isClosed;
 }
 
 [System.Serializable]
 public struct CircuitNodeData
 {
+    [Tooltip("x is the row and y is the column")]
+    [SerializeField] public Vector2Int rowAndColumn;
+    [SerializeField] public SquareNode node;
     [SerializeField] public SquareNodeDirections expectedDirections;
     [SerializeField] public bool match;
 }
