@@ -216,10 +216,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRoot: 1
-  currentUp: 0
-  connections: 00000000
+  currentUp: 1
+  connections: 01000000
   <IsCharged>k__BackingField: 1
-  lastUpSaved: 0
+  lastUpSaved: 1
 --- !u!114 &7670284796868804930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,3 +232,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9e2d23c0a9dfb48becfded57d57dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  node: {fileID: 0}
+  sprites: []

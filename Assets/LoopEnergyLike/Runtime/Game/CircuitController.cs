@@ -34,6 +34,7 @@ public class CircuitController : MonoBehaviour
         for (int i = 0; i < nodes.Length; i++)
         {
             nodes[i].CheckAllConnections();
+            nodes[i].CheckCharge();
         }
     }
 
@@ -47,6 +48,7 @@ public class CircuitController : MonoBehaviour
         for (int i = 0; i < nodes.Length; i++)
         {
             CheckNode(nodes[i], i);
+            nodes[i].CheckCharge();
         }
 
         bool circuitClosedCheck = circuitData.NodesData.All(data => data.match);
@@ -67,7 +69,6 @@ public class CircuitController : MonoBehaviour
 
     private void CheckNode(SquareNode node, int index)
     {
-        node.CheckCharge();
         circuitData.NodesData[index].match = node.CurrentUp == circuitData.NodesData[index].expectedDirections;
     }
 }

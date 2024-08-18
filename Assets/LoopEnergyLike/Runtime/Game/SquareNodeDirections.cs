@@ -1,7 +1,10 @@
-﻿public enum SquareNodeDirections
+﻿using System;
+
+[Flags]
+public enum SquareNodeDirections
 {
-    Up = 0,
-    Right = -90,
-    Down = -180,
-    Left = -270
+    Up = 1,
+    Right = 2,
+    Down = 4,
+    Left = 8
 }

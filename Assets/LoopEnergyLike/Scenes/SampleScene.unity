@@ -3317,23 +3317,23 @@ MonoBehaviour:
     <NodesData>k__BackingField:
     - rowAndColumn: {x: 0, y: 0}
       node: {fileID: 7214582343037003882, guid: df42cf306a64cb247bc2400e67b039e3, type: 3}
-      expectedDirections: 0
+      expectedDirections: 1
       match: 0
     - rowAndColumn: {x: 1, y: 0}
       node: {fileID: 4260516543986764253, guid: ac688d68ef379c1429a57f377a116383, type: 3}
-      expectedDirections: 0
+      expectedDirections: 5
       match: 0
     - rowAndColumn: {x: 2, y: 0}
       node: {fileID: 7548246866466632798, guid: 8ede59a2f50758c46ac7c495f6224b7b, type: 3}
-      expectedDirections: -90
+      expectedDirections: 2
       match: 0
     - rowAndColumn: {x: 2, y: 1}
       node: {fileID: 4260516543986764253, guid: ac688d68ef379c1429a57f377a116383, type: 3}
-      expectedDirections: -90
+      expectedDirections: 5
       match: 0
     - rowAndColumn: {x: 3, y: 0}
       node: {fileID: 4260516543986764253, guid: ac688d68ef379c1429a57f377a116383, type: 3}
-      expectedDirections: 0
+      expectedDirections: 10
       match: 0
     - rowAndColumn: {x: 2, y: 2}
       node: {fileID: 1684014782146044357, guid: f71b35be06890cf419b7f00690d68262, type: 3}
@@ -3341,9 +3341,9 @@ MonoBehaviour:
       match: 0
     - rowAndColumn: {x: 4, y: 0}
       node: {fileID: 1684014782146044357, guid: f71b35be06890cf419b7f00690d68262, type: 3}
-      expectedDirections: -180
+      expectedDirections: 4
       match: 0
-    isClosed: 0
+    isClosed: 1
 --- !u!4 &1983437435
 Transform:
   m_ObjectHideFlags: 0

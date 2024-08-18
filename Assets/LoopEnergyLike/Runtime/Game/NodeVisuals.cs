@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -10,11 +11,21 @@ public class NodeVisuals : MonoBehaviour
     //In a normal situation, it should be only one, but I'm had no time to find or create the sprite
     [SerializeField] private SpriteRenderer[] sprites;
 
-    void Start()
+    private void Awake()
     {
         sprites = GetComponentsInChildren<SpriteRenderer>();
         node = GetComponent<SquareNode>();
         node.OnChangeCharge += Node_OnChangeCharge;
+    }
+
+    void Start()
+    {
+        node.OnSpin += Node_OnSpin;
+    }
+
+    private void Node_OnSpin()
+    {
+        transform.Rotate(0, 0, -90);
     }
 
     private void Node_OnChangeCharge(bool newValue)

@@ -66,11 +66,9 @@ public class SquareNode : MonoBehaviour
 
         ConnectedNodes.Clear();
         currentUp = currentUp.GetNext();
-        transform.rotation = Quaternion.Euler(0, 0, (int)currentUp);
 
         SpinConnections();
         CheckAllConnections(gridSlot);
-        CheckCharge();
         
         OnSpin?.Invoke();
     }

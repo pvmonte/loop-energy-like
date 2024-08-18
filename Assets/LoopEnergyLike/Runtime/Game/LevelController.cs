@@ -12,11 +12,11 @@ public class LevelController : MonoBehaviour
 
     [SerializeField] private Vector2Int gameGridCoords; //Row x Columns
     [SerializeField] private GridSlot slotPrefab;
-    [SerializeField] private GridSlot[,] gridSlots;
+    private GridSlot[,] gridSlots;
 
     void Start()
     {
-        gridSlots = new GridSlot[(int)gameGridCoords.x, (int)gameGridCoords.y];
+        gridSlots = new GridSlot[gameGridCoords.x, gameGridCoords.y];
 
         for (int row = 0; row < gameGridCoords.x; row++)
         {

@@ -15,7 +15,7 @@ public static class EnumExtensions
             case SquareNodeDirections.Left:
                 return SquareNodeDirections.Up;
             default:
-                throw new ArgumentOutOfRangeException(nameof(currentValue), currentValue, "No next value defined.");
+                return SquareNodeDirections.Up;
         }
     }
 

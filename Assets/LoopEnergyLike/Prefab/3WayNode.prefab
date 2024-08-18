@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 7e3f6cda282eae44685223bda7f0cc62, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -158,7 +158,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 7e3f6cda282eae44685223bda7f0cc62, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -242,7 +242,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 7e3f6cda282eae44685223bda7f0cc62, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -301,10 +301,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRoot: 0
-  currentUp: 0
-  connections: 00000000a6fffffff2feffff
+  currentUp: 1
+  connections: 080000000100000002000000
   <IsCharged>k__BackingField: 0
-  lastUpSaved: 0
+  lastUpSaved: 1
 --- !u!114 &8009237844395480638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,3 +317,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9e2d23c0a9dfb48becfded57d57dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  node: {fileID: 0}
+  sprites: []
